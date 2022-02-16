@@ -61,6 +61,10 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char selectcopyss[] = "maim -s | xclip -selection clipboard -t image/png";
+static const char selectss[] = "maim -s ~/Screenshots/$(date +%s).png";
+static const char ss[] = "maim ~/Screenshots/$(date +%s).png";
+static const char copyss[] = "maim | xclip -selection clipboard -t image/png";
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -100,6 +104,10 @@ static Key keys[] = {
 	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
 	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+	{ ControlMask|ShiftMask, XK_Print, spawn, SHCMD(selectcopyss) },
+	{ ControlMask, XK_Print, spawn, SHCMD(selectss) },
+	{ ShiftMask, XK_Print, spawn, SHCMD(copyss) },
+	{ 0, XK_Print, spawn, SHCMD(ss) },
 };
 
 /* button definitions */
