@@ -15,18 +15,18 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#262626";
-static const char col_gray2[]       = "#444444";
+static const char col_gray2[]       = "#1C1C1C";
 static const char col_gray3[]       = "#BCBCBC";
-static const char col_gray4[]       = "#BCBCBC";
-static const char col_cyan[]        = "#5F5F87";
+static const char col_gray4[]       = "#8787AF";
+static const char col_cyan[]        = "#444444";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_gray1, col_cyan  },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "A", "M", "O", "N", "G", "U", "S"};
 
 static const Rule rules[] = {
 	{ "st", NULL,       NULL,       NULL,       1,            0 }
