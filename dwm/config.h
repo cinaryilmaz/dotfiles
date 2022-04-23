@@ -12,8 +12,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "JetBrainsMono:size=10" };
+static const char dmenufont[]       = "JetBrainsMono:size=10";
 static const char col_gray1[]       = "#262626";
 static const char col_gray2[]       = "#1C1C1C";
 static const char col_gray3[]       = "#BCBCBC";
@@ -61,10 +61,12 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char selectcopyss[] = "maim -s | xclip -selection clipboard -t image/png";
-static const char selectss[] = "maim -s ~/Screenshots/$(date +%s).png";
-static const char ss[] = "maim ~/Screenshots/$(date +%s).png";
-static const char copyss[] = "maim | xclip -selection clipboard -t image/png";
+static const char selectcopyss[] = "maim -su | xclip -selection clipboard -t image/png";
+static const char selectss[] = "maim -su ~/Screenshots/$(date +%s).png";
+static const char ss[] = "maim -u ~/Screenshots/$(date +%s).png";
+static const char copyss[] = "maim -u | xclip -selection clipboard -t image/png";
+static const char *next[] = { "playerctl",  "next", NULL};
+static const char *prev[] = { "playerctl", "previous", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -108,6 +110,8 @@ static Key keys[] = {
 	{ ControlMask, XK_Print, spawn, SHCMD(selectss) },
 	{ ShiftMask, XK_Print, spawn, SHCMD(copyss) },
 	{ 0, XK_Print, spawn, SHCMD(ss) },
+   	{ 0, XF86XK_AudioNext, spawn, {.v = next } },
+    { 0, XF86XK_AudioPrev, spawn, {.v = prev } },
 };
 
 /* button definitions */
