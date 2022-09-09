@@ -7,6 +7,9 @@ static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%"
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 
+/* applauncher */
+static const char *applaunch[] = {"/usr/local/bin/applaunch", NULL};
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -112,6 +115,7 @@ static Key keys[] = {
 	{ 0, XK_Print, spawn, SHCMD(ss) },
    	{ 0, XF86XK_AudioNext, spawn, {.v = next } },
     { 0, XF86XK_AudioPrev, spawn, {.v = prev } },
+        {MODKEY|ControlMask, XK_a, spawn, {.v = applaunch}},
 };
 
 /* button definitions */
