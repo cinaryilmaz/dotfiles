@@ -1,21 +1,9 @@
-website=`echo -e "Youtube\nGithub\nQoLang\nQoLang website\nBack" | dmenu -l 10 -i -p "Select a website to open:"`
-case $website in
-  Youtube)
-    firefox https://youtube.com
-    ;;
-  Github)
-    firefox https://github.com
-    ;;
-  QoLang)
-    firefox https://github.com/QoLang/QoLang
-    ;;
-  QoLang\ website)
-    firefox https://qolang.camroku.tech
-    ;;
-  Back)
+xoffset=$[(`xdpyinfo | grep dimensions: | grep -o '[0-9]\+' | sed -n 1p` - 384) / 2]
+yoffset=$[(`xdpyinfo | grep dimensions: | grep -o '[0-9]\+' | sed -n 2p` - (`[[ \`find ~/.applsh/web -maxdepth 1 -type f -printf "%f\n" | wc -l\` > 10 ]] && echo 10 || \`find ~/.applsh/web -maxdepth 1 -type f -printf "%f\n" | wc -l\`` + 1) * 21) / 2]
+website=`(find ~/.applsh/web -maxdepth 1 -type f -printf "%f\n"; "Back") | dmenu -x $xoffset -y $yoffset -z 384 -l 10 -i -p "Select website:"`
+if [[ "$website" = "Back" ]]
+then
     applaunch
-    ;;
-  *)
-    exit 0
-    ;;
-esac
+else
+    find ~/.applsh/web -maxdepth 1 -type f -printf "%f\n" | grep -F -q -x "$website" && sh -c "firefox `cat ~/.applsh/web/\"$website\"`" || firefox "$website"
+fi
