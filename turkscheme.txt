@@ -1,0 +1,10 @@
+
+black:  #010109 #757d74
+red:    #3b0f0d #550502
+green:  #132709 #62692c
+yellow: #c1946d #ebdaa1
+blue:   #456268 #879c9c
+purple: #574568 #91879c
+cyan:   #456866 #879c99
+white:  #a7bbb6 #f9f4da
+fg/bg:  #cfcec6 #00010a
