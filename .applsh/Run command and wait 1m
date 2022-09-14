@@ -1,0 +1,7 @@
+#!/bin/bash
+xoffset=$[(`xdpyinfo | grep dimensions: | grep -o '[0-9]\+' | sed -n 1p` - 384) / 2]
+yoffset=$[(`xdpyinfo | grep dimensions: | grep -o '[0-9]\+' | sed -n 2p` - 42) / 2]
+command=`dmenu -x $xoffset -y $yoffset -z 384 -l 10 -i -p "Enter command:"  < /dev/null`";sleep 60"
+command=${command@Q}
+
+st -e sh -c $command
