@@ -1,0 +1,18 @@
+#!/bin/bash
+xoffset=$[(`xdpyinfo | grep dimensions: | grep -o '[0-9]\+' | sed -n 1p` - 384) / 2]
+yoffset=$[(`xdpyinfo | grep dimensions: | grep -o '[0-9]\+' | sed -n 2p` - (`[[ \`find ~/.applsh/web -maxdepth 1 -type f -printf "%f\n" | wc -l\` > 10 ]] && echo 10 || \`find ~/.applsh/web -maxdepth 1 -type f -printf "%f\n" | wc -l\`` + 1) * 21) / 2]
+website=`(echo -e "English (US)\nTurkish (TR)\nBack") | dmenu -x $xoffset -y $yoffset -z 384 -l 10 -i -p "Select website:"`
+if [[ "$website" = "Back" ]]
+then
+    applaunch
+elif [[ "$website" = "" ]]
+then
+    exit 0
+elif [[ "$website" = "English (US)" ]]
+then
+    setxkbmap us
+elif [[ "$website" = "Turkish (TR)" ]]
+then
+    setxkbmap tr
+fi
+
