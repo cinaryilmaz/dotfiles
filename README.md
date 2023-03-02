@@ -12,3 +12,10 @@ Move `.applsh` to your home folder (e.g. `/home/cinar`), run ``sudo ln -s `pwd`/
 
 ## Screenshot
 ![Desktop](desktop.png)
+
+### Applaunch
+![Main menu](applsh1.png)
+
+![Layout selection menu](applsh2.png)
+
+![Website menu](applsh3.png)
