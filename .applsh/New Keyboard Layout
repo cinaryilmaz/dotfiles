@@ -1,21 +1,27 @@
 #!/bin/bash
 xoffset=$[(`xdpyinfo | grep dimensions: | grep -o '[0-9]\+' | sed -n 1p` - 384) / 2]
 yoffset=$[(`xdpyinfo | grep dimensions: | grep -o '[0-9]\+' | sed -n 2p` - (`[[ \`find ~/.applsh/web -maxdepth 1 -type f -printf "%f\n" | wc -l\` > 10 ]] && echo 10 || \`find ~/.applsh/web -maxdepth 1 -type f -printf "%f\n" | wc -l\`` + 1) * 21) / 2]
-option=`(echo -e "English (US)\nTürkçe (TR)\nGöktürkçe (OTK)\nBack") | dmenu -x $xoffset -y $yoffset -z 384 -l 10 -i -p "Select website:"`
+option=`(echo -e "English\nTurkish (Türkçe)\nOrkhon Turkish (𐰰𐰼𐰇𐱅)\nCyrillic Mongolian (Монгол)\nGreek (Ελληνικά)\nBack") | dmenu -x $xoffset -y $yoffset -z 384 -l 10 -i -p "Select website:"`
 if [[ "$option" = "Back" ]]
 then
     applaunch
 elif [[ "$option" = "" ]]
 then
     exit 0
-elif [[ "$option" = "English (US)" ]]
+elif [[ "$option" = "English" ]]
 then
     setxkbmap us
-elif [[ "$option" = "Türkçe (TR)" ]]
+elif [[ "$option" = "Turkish (Türkçe)" ]]
 then
     setxkbmap tr
-elif [[ "$option" = "Göktürkçe (OTK)" ]]
+elif [[ "$option" = "Orkhon Turkish (𐰰𐰼𐰇𐱅)" ]]
 then
     setxkbmap tr -variant otk
+elif [[ "$option" = "Cyrillic Mongolian (Монгол)" ]]
+then
+    setxkbmap mn
+elif [[ "$option" = "Greek (Ελληνικά)" ]]
+then
+    setxkbmap gr
 fi
 
